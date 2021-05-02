@@ -1,7 +1,24 @@
-import {currency} from "./currency"
-
+import {currencyIHave, currencyIWant} from "./selectors"
 const api_key = "86dbfb355c434a4f3f0b"
 
+let dayjs = require('dayjs')
+
+// object storing variables for api requests
+const currency = {
+    one: currencyIHave.value,
+    two: currencyIWant.value,
+    dateNow: null,
+    dateThen: null,
+    setDates: function () {
+        currency.dateNow = dayjs().format("YYYY-MM-DD")
+        currency.dateThen = dayjs().subtract(7, 'day').format("YYYY-MM-DD")
+    },
+    setCurrency: function() {
+        currency.one = currencyIHave.value
+        currency.two = currencyIWant.value
+    }
+}
+ 
 
 // fetches data from api
 async function getCurrentRates() {
@@ -14,26 +31,12 @@ async function getCurrentRates() {
     const response =  await fetch(api_url)
     const responseData = await response.json()
     console.log(responseData)
-    return {currencies: ex1Upper, rates: responseData[ex1.toUpperCase()], ratesReverse: responseData[ex2.toUpperCase()] }
-    // console.log("this is from get current rates")
-    // console.log(response)
-    // console.log(responseData)
-    // console.log(ex1Upper)
-    // console.log(responseData[ex1Upper])
-    // console.log(responseData[ex2.toUpperCase()])
-
-    // return {rateOne:responseData[ex1.toUpperCase()], rateTwo: responseData[ex2.toUpperCase()] }
-    // return {rateOne: }
-}
-
-// set rates in the object
-const setRates = function(one,two) {
-//    let response =  await getCurrentRates()
-    currency.rateOne =  one 
-    currency.rateTwo =  two
-    console.log("this is from set rates")
-    // console.log(currency.rateTwo)
+    return {
+        currencies: ex1Upper, 
+        currenciesReversed:ex2Upper,  
+        rates: responseData[ex1.toUpperCase()], 
+        ratesReversed: responseData[ex2.toUpperCase()] }
 
 }
 
-export {getCurrentRates, setRates}
+export {currency, getCurrentRates}
