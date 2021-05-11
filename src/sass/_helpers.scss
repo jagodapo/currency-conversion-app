@@ -1,0 +1,15 @@
+$base-size: 16;
+
+@function size($target, $context: $base-size) {
+  @return ($target / $context) * 1em;
+}
+
+
+
+@mixin flexy ($direction) {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: nowrap;
+ flex-direction: $direction;
+}

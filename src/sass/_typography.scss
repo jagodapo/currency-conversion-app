@@ -1,0 +1,28 @@
+
+body {
+    font-family:'Titillium Web', sans-serif;
+    color: $primary;
+}
+
+
+h1 {
+    font-weight: 600;
+    font-size: size(24);
+    padding-top: size(16);
+    padding-bottom: size(16);
+    text-align: center;
+}
+
+h3 {
+    font-weight: 600;
+    margin-top: size(24);
+
+}
+
+@media (min-width: 1200px) {
+h1 {
+    font-size: size(48); 
+}
+
+
+}

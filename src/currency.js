@@ -5,6 +5,10 @@ import Chart from 'chart.js/auto';
 
 let currencyChart
 
+Chart.defaults.font.family = 'Titillium Web';
+Chart.defaults.font.size = 16;
+Chart.defaults.font.color = 'rgba(49, 21, 162, 1)'
+
 //  class for storing data that comes back from api 
 class Data  {
     constructor(_currencies, _data) {
@@ -35,11 +39,17 @@ class Data  {
 
         const data = {
             labels: graphDates,
+            font: {
+                family: "'Titillium Web', sans-serif",
+                size: 14,
+                color: 'rgba(49, 21, 162, 1)'
+            },
+
             datasets: [{
-                label: "lalala",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-    
+                label: this.currencies.replace("_", " "),
+                backgroundColor: 'rgba(49, 21, 162, 1)',
+                borderColor: 'rgba(49, 21, 162, 1)',
+
                 data: graphRates,
             }]
         };
@@ -47,9 +57,37 @@ class Data  {
         const graphConfig = {
             type: 'line',
             data,
-            options: {}
+            options: {
+                legend: {
+                    labels: {
+                        family: "'Titillium Web', sans-serif",
+                        fontColor: "rgba(49, 21, 162, 1)",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            family: "'Titillium Web', sans-serif",
+                            fontColor: "rgba(49, 21, 162, 1)",
+                            fontSize: 18,
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            family: "'Titillium Web', sans-serif",
+                            fontColor: "rgba(49, 21, 162, 1)",
+                            fontSize: 14,
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         };
-        currencyChart = new Chart(graphCanvas, graphConfig);
+        currencyChart = new Chart(graphCanvas, graphConfig).getContext('2d');
 
     }
     calculate(amount) {

@@ -1,6 +1,9 @@
+// import 'materialize-css/dist/js/materialize.min.js'
+// import 'materialize-css/dist/css/materialize.min.css'
+import "./style.scss"
 import {currencyChart, destroyChart, Data } from "./currency"
 import { currency, getCurrentRates} from "./get"
-import { currencyIHave, currencyIWant, amountIHave, amountIWant, reverseButton } from "./selectors"
+import { cIHave, cIwant, currencyIWant, amountIHave, amountIWant, reverseButton, cYouNeed } from "./selectors"
 import Chart from 'chart.js/auto';
 
 
@@ -10,14 +13,14 @@ let dayjs = require('dayjs')
 const dataReceived = []
 
 const UpdateDisplay = async () => {
-   await currency.setCurrency()
+   // await currency.setCurrency()
    const response = await getCurrentRates()
    console.log(response)
 
    // creates two objects from data coming back from api eg: for USD_AUD and AUD_USD dates and rates
    let data = new Data(response.currencies, response.rates)
    let reverse = new Data(response.currenciesReversed, response.ratesReversed)
-
+   dataReceived.length = 0 
    dataReceived.push(data)
    dataReceived.push(reverse)
    dataReceived.forEach(dataFromApi => {
@@ -28,8 +31,8 @@ const UpdateDisplay = async () => {
    dataReceived[0].displayGraph()
    dataReceived[0].displayRate()
 }
-currencyIHave.addEventListener("change", UpdateDisplay)
-currencyIWant.addEventListener("change", UpdateDisplay)
+// currencyIHave.addEventListener("change", UpdateDisplay)
+// currencyIWant.addEventListener("change", UpdateDisplay)
 amountIHave.addEventListener("input", (e) => {
 let number = dataReceived[0].calculate(e.target.value)
 amountIWant.value = number
@@ -40,9 +43,9 @@ amountIHave.value = number
 })
 
 reverseButton.addEventListener("click", () => {
-  let temp = currencyIWant.value 
-  currencyIWant.value = currencyIHave.value
-  currencyIHave.value = temp
+  let temp = currency.one
+  currency.one = currency.two
+  currency.two = temp
   dataReceived.reverse()
   destroyChart()
   dataReceived[0].displayGraph()
@@ -51,5 +54,7 @@ reverseButton.addEventListener("click", () => {
 
 
 // onpageload APP STARTS HERE - refactor the rest
+// currency.setInitial()
 currency.setDates()
+currency.setInitialCurrency()
 UpdateDisplay()
