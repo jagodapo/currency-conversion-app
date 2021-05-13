@@ -58,7 +58,7 @@ const currency = {
 // fetches data from api
 async function getCurrentRates() {
     console.log("from get current rates")
-    const api_url = `https://cors-anywhere.herokuapp.com/https://free.currconv.com/api/v7/convert?q=${currency.one}_${currency.two},${currency.two}_${currency.one}&compact=ultra&date=${currency.dateThen}&endDate=${currency.dateNow}&apiKey=${api_key}`
+    const api_url = `https://free.currconv.com/api/v7/convert?q=${currency.one}_${currency.two},${currency.two}_${currency.one}&compact=ultra&date=${currency.dateThen}&endDate=${currency.dateNow}&apiKey=${api_key}`
     
     console.log(currency.one)
     console.log(currency.two)

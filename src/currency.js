@@ -3,7 +3,6 @@ import {graphCanvas, exchangeRate, amountIWant, amountIHave} from "./selectors"
 let dayjs = require('dayjs')
 import Chart from 'chart.js/auto';
 
-let currencyChart
 
 Chart.defaults.font.family = 'Titillium Web';
 Chart.defaults.font.size = 16;
@@ -31,7 +30,8 @@ class Data  {
     }
     displayRate() {
         exchangeRate.innerText = this.rateToday
-        amountIWant.value = amountIHave.value * this.rateToday.toFixed(2)
+        const result = amountIHave.value * this.rateToday
+        amountIWant.value = result.toFixed(2)
     }
     displayGraph() {
         const graphRates = this.rates
@@ -87,7 +87,8 @@ class Data  {
                 }
             }
         };
-        currencyChart = new Chart(graphCanvas, graphConfig).getContext('2d');
+
+            window.currencyChart  = new Chart(graphCanvas, graphConfig)
 
     }
     calculate(amount) {
@@ -100,10 +101,10 @@ return number.toFixed(2)
 
 // destroy existing chart otherswe graphjs doesn't work
 const destroyChart = () => {
-    if (currencyChart) {
-        currencyChart.destroy();
+    if (window.currencyChart) {
+        window.currencyChart.destroy();
     }
 }
 
 
-export {destroyChart, currencyChart, Data}
+export {destroyChart,  Data}

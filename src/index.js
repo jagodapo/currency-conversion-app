@@ -1,9 +1,8 @@
-// import 'materialize-css/dist/js/materialize.min.js'
-// import 'materialize-css/dist/css/materialize.min.css'
+
 import "./style.scss"
-import {currencyChart, destroyChart, Data } from "./currency"
+import { destroyChart, Data } from "./currency"
 import { currency, getCurrentRates} from "./get"
-import { cIHave, cIwant, currencyIWant, amountIHave, amountIWant, reverseButton, cYouNeed } from "./selectors"
+import { cIHave, cIWant, currencyIWant, amountIHave, amountIWant, reverseButton, cYouNeed } from "./selectors"
 import Chart from 'chart.js/auto';
 
 
@@ -31,8 +30,28 @@ const UpdateDisplay = async () => {
    dataReceived[0].displayGraph()
    dataReceived[0].displayRate()
 }
-// currencyIHave.addEventListener("change", UpdateDisplay)
-// currencyIWant.addEventListener("change", UpdateDisplay)
+
+// selecting currency user wants
+const cIHaveArray = Array.from(cIHave)
+cIHaveArray.forEach((c)=> c.addEventListener("change", (e) => {
+   if (e.target.checked === true) {
+      currency.one = e.target.value
+      UpdateDisplay()
+   }
+
+}))
+
+// selecting currency user needs
+const cIWantArray = Array.from(cIWant)
+cIWantArray.forEach((c)=> c.addEventListener("change", (e) => {
+   if (e.target.checked === true) {
+      currency.two = e.target.value
+      UpdateDisplay()
+   }
+
+}))
+
+// calculating the amount
 amountIHave.addEventListener("input", (e) => {
 let number = dataReceived[0].calculate(e.target.value)
 amountIWant.value = number
@@ -42,10 +61,20 @@ let number = dataReceived[1].calculate(e.target.value)
 amountIHave.value = number
 })
 
+// reversing order of the objects in the array and displaying correct data
 reverseButton.addEventListener("click", () => {
+
+
+
+// tu jest problem
+   cIWantArray.forEach(c => c.value == currency.one? c.checked === "checked" : c.checked === "unchecked")
+  
+
+
   let temp = currency.one
   currency.one = currency.two
   currency.two = temp
+
   dataReceived.reverse()
   destroyChart()
   dataReceived[0].displayGraph()
@@ -53,8 +82,7 @@ reverseButton.addEventListener("click", () => {
 })
 
 
-// onpageload APP STARTS HERE - refactor the rest
-// currency.setInitial()
+// onpageload
 currency.setDates()
 currency.setInitialCurrency()
 UpdateDisplay()
