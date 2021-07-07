@@ -3,6 +3,8 @@
 const cIHave = document.getElementsByName('currency-one');
 const cIWant = document.getElementsByName('currency-two');
 
+const sun = document.querySelector('.sun')
+
 
 // const currencyIWant = document.querySelector("#currency-two")
 const amountIHave = document.querySelector("#amount-i-have")
@@ -15,4 +17,4 @@ const reverseButton = document.querySelector("#reverse-button")
 const listOfCurrencies = ["EUR", "CHF", "AUD", "GBP", "JPY", "USD"]
 
 
-export {amountIHave, amountIWant, graphCanvas, exchangeRate,listOfCurrencies, reverseButton, cIHave, cIWant}
+export {amountIHave, amountIWant, graphCanvas, exchangeRate,listOfCurrencies, reverseButton, cIHave, cIWant, sun}

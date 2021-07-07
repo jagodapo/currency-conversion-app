@@ -7,26 +7,6 @@ let dayjs = require('dayjs')
 
 
 
-
-// const cINeedArray = Array.from(cINeed)
-// let temp 
-
-
-// const initialCurrency = () => {
-     
-//   const temp = cINeedArray.find(c => c.checked === true)
-//       return temp.value
-// }
-
-// cINeed.forEach((c, index) => {
-
-//     if (c.checked) {
-//       temp = c.value;
-//     }
-// });
-
-
-
 // object storing variables for api requests
 const currency = {
     // 
@@ -60,17 +40,14 @@ async function getCurrentRates() {
     console.log("from get current rates")
     const api_url = `https://free.currconv.com/api/v7/convert?q=${currency.one}_${currency.two},${currency.two}_${currency.one}&compact=ultra&date=${currency.dateThen}&endDate=${currency.dateNow}&apiKey=${api_key}`
     
-    console.log(currency.one)
-    console.log(currency.two)
-    console.log(api_url)
+
     const ex1 = `${currency.one}_${currency.two}`
     const ex2 = `${currency.two}_${currency.one}`
     const ex1Upper = ex1.toUpperCase()
     const ex2Upper = ex2.toUpperCase()
     const response =  await fetch(api_url)
-    console.log(response)
     const responseData = await response.json()
-    console.log(responseData)
+    
     return {
         currencies: ex1Upper, 
         currenciesReversed:ex2Upper,  

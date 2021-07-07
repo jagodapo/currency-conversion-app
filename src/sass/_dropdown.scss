@@ -13,7 +13,6 @@
   font-size: size(12);
   min-height: size(16);
   width:100%;  
-
   
 }
 
@@ -69,9 +68,7 @@ section {
 
 
 
-.select-wrapper #curreny-one{
-
-
+.select-wrapper #currency-one{
   &:before {
     @include labels;
     content: "Currency I have";
@@ -150,6 +147,7 @@ section {
   
   &__input {
     display: none;
+    border-radius: 5px;
     
     &:checked + .select-box__input-text {
       display: block;
@@ -162,6 +160,7 @@ section {
     margin: 0;
     padding: size(12);
     background-color: #fff;
+    border-radius: 5px;
   }
   
   &__list {

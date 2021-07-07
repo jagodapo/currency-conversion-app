@@ -46,7 +46,7 @@ class Data  {
             },
 
             datasets: [{
-                label: this.currencies.replace("_", " "),
+                label: this.currencies.replace("_", " to "),
                 backgroundColor: 'rgba(49, 21, 162, 1)',
                 borderColor: 'rgba(49, 21, 162, 1)',
 

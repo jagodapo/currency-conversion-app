@@ -2,7 +2,7 @@
 import "./style.scss"
 import { destroyChart, Data } from "./currency"
 import { currency, getCurrentRates} from "./get"
-import { cIHave, cIWant, currencyIWant, amountIHave, amountIWant, reverseButton, cYouNeed } from "./selectors"
+import { cIHave, cIWant, amountIHave, amountIWant, reverseButton, sun  } from "./selectors"
 import Chart from 'chart.js/auto';
 
 
@@ -14,7 +14,6 @@ const dataReceived = []
 const UpdateDisplay = async () => {
    // await currency.setCurrency()
    const response = await getCurrentRates()
-   console.log(response)
 
    // creates two objects from data coming back from api eg: for USD_AUD and AUD_USD dates and rates
    let data = new Data(response.currencies, response.rates)
@@ -31,10 +30,13 @@ const UpdateDisplay = async () => {
    dataReceived[0].displayRate()
 }
 
+
 // selecting currency user wants
 const cIHaveArray = Array.from(cIHave)
 cIHaveArray.forEach((c)=> c.addEventListener("change", (e) => {
    if (e.target.checked === true) {
+      sun.classList.add("sun-animation");
+      setTimeout(() => sun.classList.remove("sun-animation"), 2000);
       currency.one = e.target.value
       UpdateDisplay()
    }
@@ -45,6 +47,8 @@ cIHaveArray.forEach((c)=> c.addEventListener("change", (e) => {
 const cIWantArray = Array.from(cIWant)
 cIWantArray.forEach((c)=> c.addEventListener("change", (e) => {
    if (e.target.checked === true) {
+      sun.classList.add("sun-animation");
+      setTimeout(() => sun.classList.remove("sun-animation"), 2000);
       currency.two = e.target.value
       UpdateDisplay()
    }
