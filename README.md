@@ -1,5 +1,5 @@
 # Currency Conversion App
----
+
 I created a simple currency conversion app using free currency conversion API and graph.js library.
 
 ### What I learnt 
