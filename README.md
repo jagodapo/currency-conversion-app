@@ -19,7 +19,7 @@ $ git clone https://github.com/jagodapo/currency-conversion-app.git
 ```
 2. **Cd into the repo**
 ```bash
-cd MadMaterialsC
+cd currency-conversion-app
 ```
 3. **Add contentful access tokens**
 4. **Install dependencies**
