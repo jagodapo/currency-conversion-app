@@ -21,11 +21,9 @@ $ git clone https://github.com/jagodapo/currency-conversion-app.git
 ```bash
 cd currency-conversion-app
 ```
-3. **Add contentful access tokens**
-4. **Install dependencies**
+3. **Install dependencies**
 ```bash
 $ npm install
 ```
-5. **Open the source code and start editing**
+4. **Open the source code and start editing**
 ```
-    The site is now running at `http://localhost:8000`!
