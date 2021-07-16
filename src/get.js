@@ -1,9 +1,6 @@
-// Convert queries accepts a maximum of 2 conversion parameters to avoid abuse of the service and to help maintain the health of the web services. Free API keys are also limited to one IP address
-
 import { cIHave, cIWant } from "./selectors";
-import { key } from "./key";
 
-const api_key = key;
+const api_key = "4eaa38357e7a4612944d76ce735a5076";
 
 let dayjs = require("dayjs");
 
@@ -35,7 +32,6 @@ const currency = {
 
 // fetches data from api
 async function getCurrentRates() {
-  console.log("from get current rates");
   const api_url = `https://free.currconv.com/api/v7/convert?q=${currency.one}_${currency.two},${currency.two}_${currency.one}&compact=ultra&date=${currency.dateThen}&endDate=${currency.dateNow}&apiKey=${api_key}`;
 
   const ex1 = `${currency.one}_${currency.two}`;
